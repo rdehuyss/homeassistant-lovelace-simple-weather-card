@@ -9,7 +9,7 @@ class SimpleWeatherCard extends Polymer.Element {
             display:flex;
             align-items: center;
             justify-content: space-between;
-            height: 100%;
+            box-sizing: border-box;
           }
 
           .weather-card > * {
@@ -25,7 +25,7 @@ class SimpleWeatherCard extends Polymer.Element {
           .weather-icon {
             width: 22em;
             height: 22em;
-            margin: -4em -5em;
+            margin: -3em -5em;
           }
 
           .temperature-info {
@@ -48,11 +48,10 @@ class SimpleWeatherCard extends Polymer.Element {
       <ha-card id="simpleWeatherCard" header="Weather">
         <div class="weather-card">  
           <div id="weatherInfo" class="weather-info">
-            <img class="weather-icon"></img>
-            <div>Cloudy</div>
+            <img class="weather-icon" src="/local/icons/weather_icons/animated/thunder.svg" />
           </div>
           <div class="temperature-info">
-            <div id="temperature" class="temperature"></div>
+            <div id="temperature" class="temperature">18</div>
             <div id="diff" class="diff">2 degrees colder <br />than today</div>
           </div>
         </div>
@@ -89,7 +88,7 @@ class SimpleWeatherCard extends Polymer.Element {
     this.weatherEntity = hass.states[this.config.entity];
     this.currentCondition = this.weatherEntity.state;
 
-    this.displayWeatherInfo();
+    //this.displayWeatherInfo();
   }
 
   displayWeatherInfo() {
@@ -106,7 +105,7 @@ class SimpleWeatherCard extends Polymer.Element {
   displayWeatherForTomorrow(today, tomorrow) {
     this.$.diff.innerHTML = this._getDifference(tomorrow, today, 'today');
     this.$.simpleWeatherCard.header = 'Weather tomorrow';
-    this.$.weatherInfo.innerHTML = `<img class="weather-icon" src="/local/icons/weather_icons/animated/${this.weatherIcons[tomorrow.condition]}.svg" />`;
+    this.$.weatherInfo.innerHTML = `<img class="weather-icon" src="/local/icons/weather_icons/animated/${this.weatherIcons[tomorrow.condition]}.svg#svgView(viewBox(0,0,100,100)" />`;
     this.$.temperature.innerHTML = `${tomorrow.temperature} ${this._hass.config.core.unit_system['temperature']}`;
   }
 
