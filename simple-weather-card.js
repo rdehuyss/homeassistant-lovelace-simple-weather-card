@@ -88,7 +88,7 @@ class SimpleWeatherCard extends Polymer.Element {
     this.weatherEntity = hass.states[this.config.entity];
     this.currentCondition = this.weatherEntity.state;
 
-    //this.displayWeatherInfo();
+    this.displayWeatherInfo();
   }
 
   displayWeatherInfo() {
